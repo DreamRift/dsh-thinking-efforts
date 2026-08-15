@@ -1,0 +1,12 @@
+# dependencies / build artifacts
+node_modules/
+*.tgz
+*.tsbuildinfo
+
+# local diagnostics
+*.probe.json
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,4 @@
+# Automatically add off/high/max reasoning efforts to saved custom provider models.
+- insert:
+    - id: thinking-efforts
+      name: dsh-thinking-efforts
