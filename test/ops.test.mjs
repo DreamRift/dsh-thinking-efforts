@@ -279,12 +279,12 @@ test('apply retries while the llm-pi-ai descriptor is absent, then patches it', 
 
   // llm-pi-ai 条目就绪：describe 开始返回描述符（用户刚保存了自定义提供方）。
   settings.state.descriptors = [
-    { ns: 'llm-pi-ai', user: { providers: { xinyunspace: { models: [{ id: 'deepseek-v4-flash' }] } } } },
+    { ns: 'llm-pi-ai', user: { providers: { 'custom-gateway': { models: [{ id: 'deepseek-v4-flash' }] } } } },
   ]
   await timer.flush()
 
   assert.equal(settings.state.mutations.length, 1)
-  assert.deepEqual(settings.state.mutations[0].ops[0].path, ['providers', 'xinyunspace', 'models'])
+  assert.deepEqual(settings.state.mutations[0].ops[0].path, ['providers', 'custom-gateway', 'models'])
   dispose()
 })
 
