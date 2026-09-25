@@ -31,8 +31,15 @@ reasoningEfforts:
 ## Install
 
 ```powershell
-dsh plugin --profile desktop add <path-or-git-spec>
+# from a release tarball (see the Releases page below)
+dsh plugin --profile desktop add <path>\dsh-thinking-efforts-0.3.0.tgz
+
+# or straight from the repository
+dsh plugin --profile desktop add git+https://github.com/DreamRift/dsh-thinking-efforts.git
 ```
+
+Prebuilt tarballs are attached to each GitHub Release:
+<https://github.com/DreamRift/dsh-thinking-efforts/releases>
 
 Restart DSH and hard-refresh the browser after installing. The desktop profile wires the plugin's `cordis.patch.yml` in as a bundle overlay automatically (via `dsh.bundle.patch`).
 
