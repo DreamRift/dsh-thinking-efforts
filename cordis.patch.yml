@@ -1,4 +1,11 @@
-# Automatically add off/high/max reasoning efforts to saved custom provider models.
+# Automatically add off/low/high/max reasoning efforts to saved custom provider models.
+# 适配 DSH 0.1.7-rc.x（官方桌面版 nightly）：
+# - 触发器是 settings/document-updated(ns, revision)（旧版 settings/updated 已移除）；
+# - 读取 settings.describe() 的 user 层（profile patch 层 = 用户自定义提供方）；
+# - 写入 settings.mutate('llm-pi-ai', ops)（providers 为 volatile 字段，热提交不重启条目）。
 - insert:
     - id: thinking-efforts
       name: dsh-thinking-efforts
+      config:
+        enabled: true
+        force: false

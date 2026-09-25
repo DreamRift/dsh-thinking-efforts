@@ -1,7 +1,7 @@
 {
   "name": "dsh-thinking-efforts",
-  "version": "0.1.0",
-  "description": "Automatically add off/high/max reasoning efforts to saved llm-pi-ai custom provider models",
+  "version": "0.3.0",
+  "description": "Automatically add off/low/high/max reasoning efforts to saved llm-pi-ai custom provider models (DSH 0.1.7-rc.x desktop)",
   "type": "module",
   "main": "./lib/index.js",
   "exports": {
