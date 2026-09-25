@@ -408,6 +408,26 @@ test('apply retries after a failed mutate with backoff', async () => {
   dispose()
 })
 
+test('apply warns once while the namespace never becomes ready', async () => {
+  const settings = createFakeSettings([])
+  const timer = createFakeTimer()
+  const warns = []
+  const ctx = createFakeCtx(settings, timer)
+  ctx.logger.warn = (message) => warns.push(message)
+
+  const dispose = apply(ctx, {})
+  await timer.flush(64)
+  assert.ok(timer.pending.length === 0, '重试上限到達后不应再排队')
+  assert.equal(warns.length, 1)
+
+  // 之后再来事件也不重复告警。
+  ctx.emit('settings/document-updated', 'llm-pi-ai', 9)
+  await timer.flush(8)
+  assert.equal(warns.length, 1)
+  assert.equal(settings.state.mutations.length, 0)
+  dispose()
+})
+
 test('apply dispose cancels the pending startup sweep', async () => {
   const settings = createFakeSettings([
     { ns: 'llm-pi-ai', user: { providers: { stepfun: { models: [{ id: 'step-5-preview' }] } } } },
